@@ -8,6 +8,7 @@ import ChatPage from './pages/ChatPage';
 import AuthPage from './pages/AuthPage';
 import { Navigate, Route, Routes } from 'react-router';
 import PageLoader from './components/PageLoader';
+import {axiosInstance} from "./lib/axios"
 
 function App() {
   // const [count, setCount] = useState(0)
