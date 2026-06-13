@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/index.js"
+"build": "powershell Remove-Item -Recurse -Force dist -ErrorAction SilentlyContinue; Copy-Item src dist -Recurse",
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js"
   },
   "keywords": [],
   "author": "",
