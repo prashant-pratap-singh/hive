@@ -21,6 +21,7 @@ import job from "./lib/cron.js";
 import clerkWebhook from "./webhooks/clerk.webhooks.js"
 import authRoutes from "./routes/auth.route.js"
 import messageRoutes from "./routes/message.route.js"
+import { app, server } from "./lib/socket.js";
  const app=express();
 
  const PORT = process.env.PORT
@@ -53,7 +54,7 @@ app.get("/{*any}",(req,res,next)=>{
     res.sendFile(path.join(publicDir,"index.html"),(err)=>next(err));
 });
 
- app.listen(PORT,()=>{
+ server.listen(PORT,()=>{
     connectDB();
     console.log("Server is up and running on port:",PORT)
 
