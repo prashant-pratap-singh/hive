@@ -2,7 +2,7 @@
  import cors from "cors";
 //  import "dotenv/config"
 import dotenv from "dotenv";
-
+import { clerkMiddleware } from "@clerk/express";
 import fs from "fs"
 import path from "path"
 
