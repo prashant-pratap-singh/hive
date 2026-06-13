@@ -7,12 +7,13 @@ import {useAuth} from "@clerk/react";
 import ChatPage from './pages/ChatPage';
 import AuthPage from './pages/AuthPage';
 import { Navigate, Route, Routes } from 'react-router';
+import PageLoader from './components/PageLoader';
 
 function App() {
   // const [count, setCount] = useState(0)
   const {isSignedIn, isLoaded} = useAuth();
 
-  if(!isLoaded)return <p>Loading...</p>
+  if(!isLoaded)return <PageLoader />
 
 
   return (
