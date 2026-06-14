@@ -9,12 +9,30 @@ import AuthPage from './pages/AuthPage';
 import { Navigate, Route, Routes } from 'react-router';
 import PageLoader from './components/PageLoader';
 import {axiosInstance} from "./lib/axios"
+import { useEffect } from 'react';
+import { useAuthStore } from './store/useAuthStore';
+import { Toaster } from 'react-hot-toast';
+
+
 
 function App() {
   // const [count, setCount] = useState(0)
   const {isSignedIn, isLoaded} = useAuth();
 
-  if(!isLoaded)return <PageLoader />
+ const clearAuth = useAuthStore((state) => state.clearAuth);
+ const checkAuth = useAuthStore((state) => state.checkAuth);
+ const isCheckingAuth = useAuthStore((state) => state.authUser);
+
+useEffect(()=>{
+  if(!isLoaded) return;
+  if(isSignedIn){
+    checkAuth();
+  }else{
+    clearAuth();
+  }
+},[checkAuth,clearAuth,isSignedIn,isLoaded])
+
+  if(!isLoaded || (isSignedIn && isCheckingAuth))return <PageLoader />
 
 
   return (
@@ -26,6 +44,7 @@ function App() {
 
       
      </Routes>
+     <Toaster />
     </WallpaperProvider>
     </ThemeProvider>
   )
